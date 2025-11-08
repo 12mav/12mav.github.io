@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-
-# ЗАМЕНИ YOUR_LOGIN на свой логин GitHub или укажи домен
-Sitemap: https://YOUR_LOGIN.github.io/sitemap.xml
