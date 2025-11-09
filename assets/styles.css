@@ -24,8 +24,9 @@ html{
   -webkit-text-size-adjust:100%;
   text-size-adjust:100%;
   height:100%;
-  overscroll-behavior-y: none;
-  overscroll-behavior-x: none;
+  /* ВАЖНО: НЕ запрещаем overscroll на корне — так сохраняется pull-to-refresh на iOS */
+  overscroll-behavior-y:auto;
+  overscroll-behavior-x:auto;
 }
 
 body{
@@ -37,51 +38,29 @@ body{
   line-height:var(--lh);
   text-transform:uppercase;
 
-  /* === Центрирование всей страницы без JS === */
+  /* Mobile-first: обычный поток, хедер наверху */
   min-height:100vh;           /* фолбэк */
-  min-height:100svh;          /* корректная единица для iOS/мобильных баров */
-  display:grid;
-  /* 1) «Пустая» область сверху, 2) header, 3) main, 4) footer, 5) «пустая» снизу.
-     Если контент короткий — пустые области делят свободное место и центрируют блок.
-     Если контента много — пустые области схлопываются (0px), поведение обычной страницы. */
-  grid-template-rows: 1fr auto auto auto 1fr;
-  height:100%;
-  overflow-y: auto;
-  overscroll-behavior-y: none;
-  overscroll-behavior-x: none;
+  min-height:100svh;          /* корректная единица для мобильных панелей */
+  display:flex;
+  flex-direction:column;
+  overflow-y:auto;            /* скролл включится ТОЛЬКО при избытке контента */
+  -webkit-overflow-scrolling:touch; /* плавная прокрутка на iOS */
 }
 
 .wrap{ width:min(700px, calc(100vw - 32px)); margin:0 auto; }
 
 /* Skip-link для a11y */
 .skip-link{
-  position:absolute;
-  left:-9999px;
-  top:auto;
-  width:1px;
-  height:1px;
-  overflow:hidden;
+  position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
 }
 .skip-link:focus{
-  position:fixed;
-  left:16px;
-  top:16px;
-  width:auto;
-  height:auto;
-  background:#000;
-  color:#fff;
-  padding:8px 12px;
-  z-index:10000;
-  text-transform:none;
+  position:fixed; left:16px; top:16px; width:auto; height:auto;
+  background:#000; color:#fff; padding:8px 12px; z-index:10000; text-transform:none;
 }
 
-/* Хедер — во 2-й строке грида, фиксируется при скролле */
+/* Хедер */
 .site-header{
-  grid-row:2;
-  position:sticky; top:0;
-  background:#fff;
-  padding:24px 0;
-  z-index:999;
+  position:sticky; top:0; background:#fff; padding:24px 0; z-index:999;
 }
 
 .nav{ display:flex; gap:36px; }
@@ -89,15 +68,13 @@ body{
 .nav a:hover, .nav a:focus-visible{ opacity:1; }
 .nav a.active, .nav a[aria-current="page"]{ opacity:1; cursor:default; }
 
-/* Контент — в 3-й строке грида */
-main{
-  grid-row:3;
-}
-main p{ display:inline-block; max-width:100%; margin:12px 0 12px 0; }
+/* Контент */
+main{ margin-top:8px; }
+main p{ display:inline-block; max-width:100%; margin:12px 0; }
 
-/* Футер — в 4-й строке грида */
+/* Футер */
 footer p{ display:inline-block; max-width:100%; margin:0; }
-.site-footer{ grid-row:4; margin-bottom:0; padding:24px 0; }
+.site-footer{ margin-bottom:0; padding:24px 0; }
 
 /* Заметные фокусы клавиатуры */
 :focus-visible{ outline:2px dashed #000; outline-offset:4px; }
@@ -108,20 +85,35 @@ footer p{ display:inline-block; max-width:100%; margin:0; }
 
 /* Вспомогательное скрытие */
 .visually-hidden{
-  position:absolute;
-  width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
   clip:rect(0 0 0 0); white-space:nowrap; border:0;
 }
 
 /* iOS Safari: убрать серый блик при тапе */
-a, .nav a, .link-plain {
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  background-color: transparent;
+a, .nav a, .link-plain{
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+  background-color:transparent;
 }
-.nav a:active, .link-plain:active {
-  background: transparent;
-}
+.nav a:active, .link-plain:active{ background:transparent; }
 
+/* Стабильная полоса прокрутки, если поддерживается */
 @supports (scrollbar-gutter: stable) {
   :root { scrollbar-gutter: stable both-edges; }
+}
+
+/* =========================
+   DESKTOP-режим: визуальное центрирование всей страницы
+   ========================= */
+@media (min-width: 900px) and (min-height: 700px){
+  /* Центрируем связку (header+main+footer) по вертикали.
+     При избытке контента пустые ряды схлопываются и страница скроллится как обычно. */
+  body{
+    display:grid;
+    grid-template-rows: 1fr auto auto auto 1fr; /* пустой · header · main · footer · пустой */
+    min-height:100vh;
+    min-height:100svh;
+  }
+  .site-header{ grid-row:2; }
+  main{ grid-row:3; }
+  .site-footer{ grid-row:4; }
 }
