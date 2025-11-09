@@ -55,7 +55,7 @@ body{
   text-transform:none;
 }
 
-.site-header{ position:sticky; top:0; background:#fff; padding:16px 0; z-index:999; }
+.site-header{ position:sticky; top:0; background:#fff; padding:36px 0; z-index:999; }
 .nav{ display:flex; gap:36px; }
 .nav a{ text-decoration:none; color:inherit; opacity:.5; outline-offset:4px; }
 .nav a:hover, .nav a:focus-visible{ opacity:1; }
