@@ -1,21 +1,39 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact — 12MAV</title>
-  <meta name="description" content="Reach us for order issues or partnerships.">
-  <meta property="og:title" content="Contact — 12MAV">
-  <meta property="og:description" content="Reach us for order issues or partnerships.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://YOUR_LOGIN.github.io/contact/">
-  <meta property="og:image" content="/assets/favicon.svg">
-  <meta name="format-detection" content="telephone=no, email=no, address=no">
-  <link rel="canonical" href="https://YOUR_LOGIN.github.io/contact/">
-  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-  <link rel="preload" href="/assets/fonts/VT323-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/styles.css">
-</head>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <title>Contact — 12MAV</title>
+      <meta name="description" content="For all inquiries, email contact@12mav.io.">
+
+      <link rel="canonical" href="https://12mav.io/contact/">
+      <meta name="robots" content="index,follow,max-image-preview:large">
+      <meta http-equiv="Content-Language" content="en">
+      <meta name="referrer" content="strict-origin-when-cross-origin">
+      <meta name="theme-color" content="#ffffff">
+
+      <!-- Open Graph -->
+      <meta property="og:site_name" content="12MAV">
+      <meta property="og:locale" content="en_US">
+      <meta property="og:type" content="website">
+      <meta property="og:url" content="https://12mav.io/contact/">
+      <meta property="og:title" content="Contact — 12MAV">
+      <meta property="og:description" content="For all inquiries, email contact@12mav.io.">
+      <meta property="og:image" content="/assets/favicon.svg">
+
+      <!-- Twitter -->
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="Contact — 12MAV">
+      <meta name="twitter:description" content="For all inquiries, email contact@12mav.io.">
+      <meta name="twitter:image" content="/assets/favicon.svg">
+
+      <!-- Icons & CSS -->
+      <meta name="format-detection" content="telephone=no, email=no, address=no">
+      <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+      <link rel="preload" href="/assets/fonts/VT323-Regular.woff2" as="font" type="font/woff2" crossorigin>
+      <link rel="stylesheet" href="/assets/styles.css">
+    </head>
 <body>
   <a class="skip-link" href="#content">Skip to content</a>
   <header class="site-header" aria-label="Primary">
@@ -27,14 +45,30 @@
     </nav>
   </header>
   <main id="content" class="wrap" tabindex="-1" aria-label="Content">
-    <p>
-      FOR ANY ISSUES WITH YOUR ORDER (E.G., WRONG ITEM OR DEFECTIVE PRODUCT),
-      CONTACT US AT
-      <a class="link-plain" href="mailto:contact@12mav.com"><span class="keep-case">contact@12mav.com</span></a>
-    </p>
+    <article aria-labelledby="contact-title">
+      <h1 id="contact-title" class="visually-hidden">Contact</h1>
+
+      <section aria-labelledby="contact-all">
+        <h2 id="contact-all" class="visually-hidden">All inquiries</h2>
+        <p>
+          For all inquiries, email:
+          <a class="link-plain" href="mailto:contact@12mav.io">
+            <span class="keep-case">contact@12mav.io</span>.
+          </a>
+        </p>
+      </section>
+    </article>
   </main>
   <footer class="wrap site-footer" aria-label="Footer">
-    <p id="copyright">© 2025 12MAV</p>
+    <p id="copyright" style="visibility:hidden">© 2025 12MAV</p>
+    <script>
+    (function(){ // render copyright before first paint
+      var SITE='12MAV', FOUNDED=2025, y=(new Date).getFullYear();
+      var text = (y===FOUNDED) ? ('© '+FOUNDED+' '+SITE) : ('© '+FOUNDED+'-'+y+' '+SITE);
+      var el = document.getElementById('copyright');
+      if(el){ el.textContent = text; el.style.visibility='visible'; }
+    })();
+    </script>
   </footer>
   <script src="/assets/app.js" defer></script>
 </body>
