@@ -16,7 +16,7 @@ in the Software without restriction...
 
 *,*::before,*::after{ box-sizing:border-box; }
 
-:root{ --font-size:24px; --lh:1.5; }
+:root{ --font-size:24px; --lh:1.34; }
 
 /* Default viewport behavior; no sticky tweaks */
 html{
@@ -49,13 +49,13 @@ body{
 /* Header moves with content */
 .site-header{
   background:#fff;
-  padding:18px 0;
+  padding:16px 0;
 }
 
 /* Horizontal scrollable nav (small screens) */
 .nav{
   display:flex;
-  gap:36px;
+  gap:32px;
   flex-wrap:nowrap;
   overflow-x:auto;               /* horizontal scroll when needed */
   overflow-y:hidden;
@@ -78,11 +78,10 @@ body{
 }
 
 /* Content & footer */
-main{ margin-top:8px; }
-main p{ display:inline-block; max-width:100%; margin:18px 0; }
+main p{ display:inline-block; max-width:100%; margin:16px 0; }
 
 footer p{ display:inline-block; max-width:100%; margin:0; }
-.site-footer{ margin-bottom:0; padding:18px 0; }
+.site-footer{ margin-bottom:0; padding:16px 0; }
 
 /* Visible keyboard focus */
 :focus-visible{ outline:2px dashed #000; outline-offset:4px; }
