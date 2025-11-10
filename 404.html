@@ -1,20 +1,30 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>404 — 12MAV</title>
-  <meta name="description" content="Page not found.">
-  <meta property="og:title" content="404 — 12MAV">
-  <meta property="og:description" content="Page not found.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="/assets/favicon.svg">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="format-detection" content="telephone=no, email=no, address=no">
-  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-  <link rel="preload" href="/assets/fonts/VT323-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/styles.css">
-</head>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <title>404 — Page not found — 12MAV</title>
+      <meta name="description" content="Page not found.">
+      <meta name="robots" content="noindex, nofollow, noarchive">
+
+      <!-- OG/Twitter без каноникала -->
+      <meta property="og:site_name" content="12MAV">
+      <meta property="og:locale" content="en_US">
+      <meta property="og:type" content="website">
+      <meta property="og:title" content="404 — Page not found — 12MAV">
+      <meta property="og:description" content="Page not found.">
+      <meta property="og:image" content="/assets/favicon.svg">
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="404 — Page not found — 12MAV">
+      <meta name="twitter:description" content="Page not found.">
+      <meta name="twitter:image" content="/assets/favicon.svg">
+
+      <meta name="format-detection" content="telephone=no, email=no, address=no">
+      <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+      <link rel="preload" href="/assets/fonts/VT323-Regular.woff2" as="font" type="font/woff2" crossorigin>
+      <link rel="stylesheet" href="/assets/styles.css">
+    </head>
 <body>
   <a class="skip-link" href="#content">Skip to content</a>
   <header class="site-header" aria-label="Primary">
@@ -26,10 +36,18 @@
     </nav>
   </header>
   <main id="content" class="wrap" tabindex="-1" aria-label="Content">
-    <p>404<br>PAGE NOT FOUND</p>
+    <p>404<br>Page not found.</p>
   </main>
   <footer class="wrap site-footer" aria-label="Footer">
-    <p id="copyright">© 2025 12MAV</p>
+    <p id="copyright" style="visibility:hidden">© 2025 12MAV</p>
+    <script>
+    (function(){ // render copyright before first paint
+      var SITE='12MAV', FOUNDED=2025, y=(new Date).getFullYear();
+      var text = (y===FOUNDED) ? ('© '+FOUNDED+' '+SITE) : ('© '+FOUNDED+'-'+y+' '+SITE);
+      var el = document.getElementById('copyright');
+      if(el){ el.textContent = text; el.style.visibility='visible'; }
+    })();
+    </script>
   </footer>
   <script src="/assets/app.js" defer></script>
 </body>
